@@ -1,5 +1,87 @@
 # Krea 2 Prompting Skill
 
+Turn a Chinese image idea, visual brief, or art description into a ready-to-paste English prompt for Krea 2.
+
+This skill favors Krea 2's long-form natural-language prompting: it describes a coherent scene, lighting, subject action, spatial depth, camera composition, and art direction instead of using comma-separated Stable Diffusion-style tags.
+
+> This is not an official Krea project. It is a community skill built from practical Krea 2 prompting guidance.
+
+## When to use it
+
+- Expand a short idea into an English Krea 2 prompt
+- Control subject scale, lens, viewpoint, or depth in an image
+- Keep environment, lighting, palette, and art style coherent
+- Handle Krea 2 text rendering, Turbo resolution, or negative-prompt questions
+
+It is not intended for Stable Diffusion tag prompts or negative-prompt workflows.
+
+## Installation
+
+Clone or copy this repository into your personal Codex skills directory:
+
+```text
+~/.codex/skills/krea2-prompting/
+├── SKILL.md
+├── agents/openai.yaml
+└── references/
+    └── krea2-prompt-patterns.md
+```
+
+For example:
+
+```bash
+git clone https://github.com/thefigand/krea2-prompting.git ~/.codex/skills/krea2-prompting
+```
+
+Restart Codex or start a new conversation for automatic discovery.
+
+## Usage
+
+Describe the desired image in natural language:
+
+```text
+Use Krea 2 to create a prompt: A futuristic Shanghai street at dusk, with a female detective in a red trench coat standing under neon lights in the rain. Cinematic mood; the character occupies one third of the frame.
+```
+
+Or invoke the skill explicitly:
+
+```text
+$krea2-prompting
+A white fox looks back in front of an ancient shrine in snowy mountains; ethereal, cool-toned, wide-angle lens.
+```
+
+By default, the skill returns one ready-to-paste English prompt.
+
+## Prompt structure
+
+The skill selects the relevant elements below instead of padding every prompt:
+
+1. Scene and overall mood
+2. Time, weather, and lighting
+3. Subject action, appearance, clothing, and interaction
+4. Foreground, mid-ground, background, or distant details
+5. Lens, viewpoint, composition, and subject scale
+6. Art style, palette, lighting, and texture
+
+It preserves explicitly requested subjects, actions, colors, and spatial relationships, and avoids inventing critical objects, IP, text, or conflicting camera directions.
+
+## Krea 2 notes
+
+- Put legible in-image text in English quotation marks, such as: `a neon sign that says "OPEN 24H"`.
+- Krea 2 does not use negative prompts; use CFG scale to adjust generation freedom instead.
+- For Krea Turbo, use dimensions at or below 2K, with both dimensions divisible by 16.
+- When composition matters, specify the lens and subject scale—for example, `occupying only one-fifth (20%) of the frame` or `taking up nearly half of the foreground frame`.
+
+## Repository layout
+
+- [`SKILL.md`](SKILL.md): core prompting guidance and output contract
+- [`references/krea2-prompt-patterns.md`](references/krea2-prompt-patterns.md): useful phrasing, structure, and an example
+- [`agents/openai.yaml`](agents/openai.yaml): Codex UI metadata
+
+---
+
+# Krea 2 提示词技能
+
 将中文灵感、画面 brief 或艺术描述转换为可直接粘贴的 Krea 2 英文文生图提示词。
 
 它偏向 Krea 2 的长篇自然语言叙述：用连贯的场景、光线、主体动作、空间层次、镜头构图和风格描述来表达画面意图，而不是堆砌 Stable Diffusion 风格的逗号标签。
